@@ -1,5 +1,5 @@
 Name:		dnscrypt-wrapper
-Version:	v0.1.16
+Version:	v0.1.17
 Release:	1%{?dist}
 Summary:	dnscrypt-wrapper - A server-side dnscrypt proxy.
 
@@ -9,7 +9,7 @@ URL:		http://dnscrypt.org/
 Source0:	https://github.com/Cofyc/%{name}/releases/download/%{version}/%{name}-%{version}.tar.bz2
 
 BuildRequires:	autoconf
-Requires:	libevent-devel libsodium
+Requires:		libevent-devel libsodium
 
 %description
 This is dnscrypt wrapper (server-side dnscrypt proxy), which helps to add dnscrypt support to any name resolver.
@@ -36,7 +36,9 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{_sbindir}/%{name}
+%doc
 
 %changelog
-* Sun Jun 21 2015 Evaggelos Balaskas <Evaggelos@Balaskas.GR>
-- *** Version 0.1.16 Stable ***
+* Fri Oct 23 2015 Evaggelos Balaskas <Evaggelos _AT_ Balaskas _DOT_ GR>
+- *** Version 0.1.17 Stable ***
+
