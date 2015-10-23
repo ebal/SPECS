@@ -1,5 +1,5 @@
 Name:           libsodium
-Version:        1.0.3
+Version:        1.0.4
 Release:        1%{?dist}
 Summary:        P(ortable|ackageable) NaCl-based crypto library
  
@@ -42,6 +42,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
-* Fri Jun 19 2015 Evaggelos Balaskas <Evaggelos@Balaskas.GR> 
-- *** Version 1.0.3 Stable ***
+* Fri Oct 23 2015 Evaggelos Balaskas <Evaggelos _AT_ Balaskas _DOT_ GR> 
+- *** Version 1.0.4 Stable ***
 
