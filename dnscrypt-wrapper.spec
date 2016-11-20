@@ -1,5 +1,5 @@
 Name:		dnscrypt-wrapper
-Version:	v0.1.17
+Version:	v0.2.2
 Release:	1%{?dist}
 Summary:	dnscrypt-wrapper - A server-side dnscrypt proxy.
 
@@ -39,6 +39,8 @@ rm -rf %{buildroot}
 %doc
 
 %changelog
+* Sun Nov 20 2016 evaggelos balaskas <evaggelos _AT_ balaskas _DOT_ gr>
+- *** Version 0.2.2 Stable ***
+
 * Fri Oct 23 2015 Evaggelos Balaskas <Evaggelos _AT_ Balaskas _DOT_ GR>
 - *** Version 0.1.17 Stable ***
-
