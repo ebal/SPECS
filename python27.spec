@@ -34,6 +34,7 @@ ln -sf /opt/%{_name}-%{version}/bin/python2.7 /usr/local/bin/python2
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+rm -rf %{_builddir}/%{_name}-%{version}
 
 
 %files
