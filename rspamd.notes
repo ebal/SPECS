@@ -1,0 +1,21 @@
+$ docker run --rm -t -i centos6:rpmbuild bash 
+
+cmake .
+
+# 1.6.5
+cmake
+gcc
+http://springdale.math.ias.edu/data/puias/unsupported/6/x86_64//ragel-6.6-2.puias6.x86_64.rpm
+lua-devel
+glib2-devel
+pcre-devel
+libevent-devel
+sqlite-devel
+libicu-devel
+openssl-devel
+file-devel
+
+http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+fann-devel
+
