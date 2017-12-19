@@ -9,6 +9,7 @@ URL:            https://www.dns-oarc.net/tools/dnscap
 Source0:        https://www.dns-oarc.net/files/%{name}/%{name}-%{version}.tar.gz
 
 BuildRequires:  libpcap-devel ldns-devel openssl-devel bind-devel zlib-devel
+Requires:       ldns
 
 %description
 dnscap is a network capture utility designed specifically for DNS traffic. It produces binary data in pcap(3) and other format. This utility is similar to tcpdump(1), but has a number of features tailored to DNS transactions and protocol options. DNS-OARC uses dnscap for DITL data collections.
