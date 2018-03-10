@@ -19,10 +19,10 @@
 
 # cd -
 # vim libsodium.spec 
-# rpmbuild -ba libsodium.spec
+# rpmbuild --clean -ba libsodium.spec
 # rpm -ivh /root/rpmbuild/RPMS/x86_64/libsodium-1.0.11-1.el7.centos.x86_64.rpm
 
 
 # vim dnscrypt-wrapper.spec
-# rpmbuild -ba dnscrypt-wrapper.spec 
+# rpmbuild --clean -ba dnscrypt-wrapper.spec 
 # rpm -ivh /root/rpmbuild/RPMS/x86_64/dnscrypt-wrapper-v0.2.2-1.el7.centos.x86_64.rpm 
