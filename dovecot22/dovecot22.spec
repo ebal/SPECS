@@ -1,5 +1,5 @@
-%define dovecotver      2.2.36.1
-%define pigeonholever   0.4.24.1
+%define dovecotver 2.2.36.1
+%define pigeonholever 0.4.24.1
 
 Name:           dovecot
 Epoch:          1
@@ -11,13 +11,19 @@ Group:          System Environment/Daemons
 License:        MIT and LGPLv2
 URL:            http://www.dovecot.org
 Source0:        http://www.dovecot.org/releases/2.2/%{name}-%{version}%{?prever}.tar.gz
-Source1:        http://pigeonhole.dovecot.org/releases/2.2/dovecot-2.2-pigeonhole-%{pigeonholever}.tar.gz
+Source1:	http://pigeonhole.dovecot.org/releases/2.2/dovecot-2.2-pigeonhole-%{pigeonholever}.tar.gz
+Source2:	dovecot.init
 
 BuildRequires:  libcap-devel openssl-devel openldap-devel pam-devel postgresql-devel mysql-devel sqlite-devel bzip2-devel xz-devel expat-devel
-Requires:       gcc
+Requires:       openssl
+
+Requires: initscripts
+Requires(post): chkconfig
+Requires(preun): chkconfig initscripts
+Requires(postun): initscripts
 
 %description
-Dovecot is an IMAP server for Linux/UNIX-like systems, written with security primarily in mind.
+Dovecot is an IMAP server for Linux/UNIX-like systems, written with security primarily in mind. 
 It also contains a small POP3 server. It supports mail in either of maildir or mbox formats.
 
 %package pigeonhole
@@ -34,25 +40,25 @@ This package provides sieve and managesieve plug-in for dovecot LDA.
 
 %prep
 ## %setup -q
-%setup -q -D -a 1
+%setup -q -D -a 1 
 
 %build
-%configure                  \
-    --enable-static         \
-    --with-nss              \
-    --with-pam              \
-    --with-mysql            \
-    --with-pgsql            \
-    --with-sqlite           \
-    --with-ssl=openssl      \
-    --with-ssldir=/etc/ssl  \
-    --with-gssapi           \
-    --with-ldap=plugin      \
-    --with-zlib             \
-    --with-bzlib            \
-    --with-lzma             \
-    --with-libcap           \
-    --with-solr             \
+%configure			\
+    --enable-static		\
+    --with-nss 			\
+    --with-pam 			\
+    --with-mysql 		\
+    --with-pgsql 		\
+    --with-sqlite 		\
+    --with-ssl=openssl 		\
+    --with-ssldir=/etc/ssl	\
+    --with-gssapi 		\
+    --with-ldap=plugin 		\
+    --with-zlib 		\
+    --with-bzlib 		\
+    --with-lzma 		\
+    --with-libcap 		\
+    --with-solr 		\
     --without-docs
 
 make %{?_smp_mflags}
@@ -60,15 +66,13 @@ make %{?_smp_mflags}
 # pigeonhole
 pushd %{name}-2*2-pigeonhole-%{pigeonholever}
 
-%configure                         \
-        --enable-static            \
-        --with-dovecot=../         \
-        --with-managesieve         \
-        --with-ldap=yes            \
-        --without-docs             \
+%configure 				\
+        --enable-static                 \
+        --with-dovecot=../              \
+	--with-managesieve		\
+	--with-ldap=yes			\
+	--without-docs			\
         --without-unfinished-features
-
-## ./configure --with-dovecot=../dovecot-2.2.36.1 --with-managesieve --with-ldap=yes --without-docs    --disable-static
 
 make %{?_smp_mflags}
 
@@ -87,18 +91,34 @@ pushd %{name}-2*2-pigeonhole-%{pigeonholever}
 popd
 # pigeonhole
 
+# Dovecot Init Script
+install -p -D -m 755 %{SOURCE2} %{buildroot}%{_initddir}/dovecot
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 rm -rf %{_builddir}/%{name}-%{version}
 
 %files
 %defattr(-,root,root,-)
-%_bindir
-%_sbindir
-%_datadir
-%_includedir
+%{_sbindir}/dovecot
+
+%{_bindir}/doveadm
+%{_bindir}/doveconf
+%{_bindir}/dsync
+%{_bindir}/sieve*
+
 %_libexecdir
-%_libdir
+
+%{_initddir}/dovecot
+
+## %dir %{_sysconfdir}/dovecot
+## %dir %{_sysconfdir}/dovecot/conf.d
+
+%{_libdir}/dovecot
+
+%{_datadir}/aclocal/dovecot*.m4
+%{_datadir}/dovecot
+%{_includedir}/dovecot
 %doc
 %{_mandir}/man1/*
 %{_mandir}/man7/*
