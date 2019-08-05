@@ -8,7 +8,7 @@
 ```sh
 # cd /root/
 # mkdir -pv ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-# yum -y install wget vim gcc autoconf make automake
+# yum -y install vim curl gcc make automake autoconf pkg-config
 ```
 
 eg. 
@@ -16,13 +16,13 @@ eg.
 ```sh
 # cd ~/rpmbuild/SPECS/
 
-# wget -c https://raw.githubusercontent.com/ebal/SPECS/master/libsodium.spec
-# wget -c https://raw.githubusercontent.com/ebal/SPECS/master/dnscrypt-wrapper.spec
+# curl -sLO https://raw.githubusercontent.com/ebal/SPECS/master/libsodium.spec
+# curl -sLO https://raw.githubusercontent.com/ebal/SPECS/master/dnscrypt-wrapper.spec
 
 
 # cd /root/rpmbuild/SOURCES/
-# wget -c https://github.com/jedisct1/libsodium/releases/download/1.0.11/libsodium-1.0.11.tar.gz
-# wget -c https://github.com/cofyc/dnscrypt-wrapper/releases/download/v0.2.2/dnscrypt-wrapper-v0.2.2.tar.bz2
+# curl -sLO https://github.com/jedisct1/libsodium/releases/download/1.0.11/libsodium-1.0.11.tar.gz
+# curl -sLO https://github.com/cofyc/dnscrypt-wrapper/releases/download/v0.2.2/dnscrypt-wrapper-v0.2.2.tar.bz2
 
 
 # cd -
